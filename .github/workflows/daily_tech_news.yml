@@ -1,4 +1,3 @@
-.github/workflows/daily_tech_news.yml
 name: 每日科技资讯推送
 
 on:
