@@ -1,4 +1,3 @@
-scripts/tech_news.py
 import os
 import feedparser
 import requests
