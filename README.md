@@ -1,1 +1,29 @@
-# daily-tech-news
+.github/workflows/daily_tech_news.yml
+name: 每日科技资讯推送
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 设置Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests feedparser
+
+      - name: 运行脚本
+        env:
+          SCT_KEY: ${{ secrets.SCT_KEY }}
+        run: python scripts/tech_news.py
